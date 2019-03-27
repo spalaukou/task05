@@ -1,5 +1,12 @@
 package by.epam.javawebtraining.spalaukou.controller;
 
+import by.epam.javawebtraining.spalaukou.logic.TrainProducer;
+import by.epam.javawebtraining.spalaukou.logic.TrainQueue;
+import by.epam.javawebtraining.spalaukou.model.entity.Route;
+import by.epam.javawebtraining.spalaukou.model.entity.Train;
+import by.epam.javawebtraining.spalaukou.model.entity.Tunnel;
+import by.epam.javawebtraining.spalaukou.model.entity.Type;
+
 import java.util.Random;
 
 /**
@@ -9,7 +16,16 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-//        FirstThread firstThread = new FirstThread();
+
+        System.out.println("Available number of cores: " + Runtime.getRuntime().availableProcessors());
+
+        TrainQueue trainQueue = new TrainQueue();
+        new TrainProducer(trainQueue, 10);
+        Tunnel tunnel1 = new Tunnel(trainQueue);
+        Tunnel tunnel2 = new Tunnel(trainQueue);
+
+
+        /*//        FirstThread firstThread = new FirstThread();
 //        firstThread.start();
         FirstThread firstThread = new FirstThread();
 
@@ -24,6 +40,6 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             System.out.println("Main thread");
             Thread.sleep(new Random().nextInt(1000));
-        }
+        }*/
     }
 }
