@@ -20,9 +20,14 @@ public class Main {
         System.out.println("Available number of cores: " + Runtime.getRuntime().availableProcessors());
 
         TrainQueue trainQueue = new TrainQueue();
-        new TrainProducer(trainQueue, 10);
+        TrainProducer trainProducer = new TrainProducer(trainQueue, 10);
         Tunnel tunnel1 = new Tunnel(trainQueue);
         Tunnel tunnel2 = new Tunnel(trainQueue);
+
+        trainProducer.getThread().join();
+        tunnel1.getThread().join();
+        tunnel2.getThread().join();
+        System.out.println("End main");
 
 
         /*//        FirstThread firstThread = new FirstThread();

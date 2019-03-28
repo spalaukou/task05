@@ -24,22 +24,23 @@ public class TrainProducer implements Runnable {
         thread.start();
     }
 
+    public Thread getThread() {
+        return thread;
+    }
+
     @Override
     public void run() {
         int count = 0;
 
         while (count < trainCount) {
             Train randomTrain = new Train(getRandomType(), getRandomRoute());
-            System.out.println("Arrives: " + randomTrain);
             count++;
             trainQueue.add(randomTrain);
-
             try {
-                TimeUnit.MILLISECONDS.sleep(500);
+                Thread.sleep(new Random().nextInt(1000));
             } catch (InterruptedException e) {
-                System.out.println("Log interruptedException");
+                e.printStackTrace();
             }
-
         }
     }
 
