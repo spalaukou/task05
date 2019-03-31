@@ -5,7 +5,6 @@ import by.epam.javawebtraining.spalaukou.model.entity.Train;
 import by.epam.javawebtraining.spalaukou.model.entity.Type;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Stanislau Palaukou on 27.03.2019
@@ -21,6 +20,7 @@ public class TrainProducer implements Runnable {
         this.trainQueue = trainQueue;
         this.trainCount = trainCount;
         thread = new Thread(this);
+        thread.setName("-=Producer=-");
         thread.start();
     }
 
@@ -31,13 +31,12 @@ public class TrainProducer implements Runnable {
     @Override
     public void run() {
         int count = 0;
-
         while (count < trainCount) {
             Train randomTrain = new Train(getRandomType(), getRandomRoute());
             count++;
             trainQueue.add(randomTrain);
             try {
-                Thread.sleep(new Random().nextInt(1000));
+                Thread.sleep(new Random().nextInt(500));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

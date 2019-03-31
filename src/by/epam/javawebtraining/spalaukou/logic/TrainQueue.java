@@ -6,6 +6,9 @@ import by.epam.javawebtraining.spalaukou.model.entity.Type;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Stanislau Palaukou on 27.03.2019
@@ -14,23 +17,33 @@ import java.util.List;
 
 public class TrainQueue {
     private List<Train> storage;
-//    private Train train;
-//    private boolean empty = true;
+    private Lock lock = new ReentrantLock();
+    private Lock lockAdd = new ReentrantLock();
 
     public TrainQueue() {
-        storage = new ArrayList<>();
+        //storage = new ArrayList<>();
+        storage = new CopyOnWriteArrayList<>();
     }
 
-    public synchronized void add(Train train) {
-        notifyAll();
+    public Lock getLock() {
+        return lock;
+    }
+
+//    public synchronized void add(Train train) {
+    public void add(Train train) {
+//        notifyAll();
+        lockAdd.lock();
         storage.add(train);
         System.out.println("Train arrives and is added to the queue: " + train);
+        lockAdd.unlock();
     }
 
-    public synchronized Train get(Route route, int tunnelNumber) {
+//    public synchronized Train get(Route route, int tunnelNumber) {
+    public Train get(Route route, int tunnelNumber) {
+        lock.lock();
         try {
-            if(storage.size() > 0) {
-                notifyAll();
+            if (storage.size() > 0) {
+//            notifyAll();
                 for (Train train : storage) {
                     if (train.getRoute() == route) {
                         storage.remove(train);
@@ -41,40 +54,10 @@ public class TrainQueue {
                 storage.remove(0);
                 return toReturn;
             }
-            System.out.println("Tunnel " + tunnelNumber + " checks: No trains in the queue");
-            new TrainProducer(this, 4);
-            wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("Tunnel " + tunnelNumber + " checks: No trains in the queue.");
+            return null;
+        } finally {
+            lock.unlock();
         }
-        return null;
     }
-
-
-    /*public synchronized void add(Train train) {
-        if (!empty) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                System.out.println("Log interruptedException");
-            }
-        }
-        System.out.println("Added to the queue: " + train);
-        this.train = train;
-        empty = false;
-        notify();
-    }
-
-    public synchronized Train get() {
-        if (empty) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                System.out.println("Log interruptedException");
-            }
-        }
-        empty = true;
-        notify();
-        return train;
-    }*/
 }

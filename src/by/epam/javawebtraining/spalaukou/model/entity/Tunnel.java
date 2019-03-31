@@ -3,7 +3,6 @@ package by.epam.javawebtraining.spalaukou.model.entity;
 import by.epam.javawebtraining.spalaukou.logic.TrainQueue;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Stanislau Palaukou on 27.03.2019
@@ -11,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class Tunnel implements Runnable {
-    private static int tunnelCount = 0;
+    private static int tunnelCount;
     private TrainQueue trainQueue;
     private Thread thread;
     private Route route;
@@ -20,10 +19,11 @@ public class Tunnel implements Runnable {
 
     public Tunnel(TrainQueue trainQueue) {
         this.trainQueue = trainQueue;
-        this.route = Route.SALOU_BARCELONA;
+        this.route = getRandomRoute();
         tunnelCount++;
         tunnelNumber = tunnelCount;
         thread = new Thread(this);
+        thread.setName("-=Tunnel " + tunnelNumber + "=-");
         thread.start();
     }
 
@@ -33,39 +33,45 @@ public class Tunnel implements Runnable {
 
     @Override
     public void run() {
-        int maxOneDirection = 2;
+        int maxInOneDirection = 3;
 
-        while (true) {
-            try {
-                Thread.sleep(1000);
-                Train train = trainQueue.get(route, tunnelNumber);
-                if (train != null) {
-                    if(train.getRoute() == route) {
-                        if (routeCount++ > maxOneDirection) {
-                            changeRoute();
-                            routeCount = 0;
-                        }
-                        System.out.println(train + " drives in the tunnel " + tunnelNumber);
-                        System.out.println("Priority route in the tunnel " + tunnelNumber + " is " + route + ". Trains already passed " + routeCount);
-                    } else {
+        boolean flag = true;
+        while (flag) {
+//            if(trainQueue.getLock().tryLock()) {
+            Train train = trainQueue.get(route, tunnelNumber);
+            if (train != null) {
+                if (train.getRoute() == route) {
+                    if (routeCount++ == maxInOneDirection) {
                         changeRoute();
                         routeCount = 0;
-                        System.out.println(train + " drives in the tunnel " + tunnelNumber);
-                        System.out.println("Priority route in the tunnel " + tunnelNumber + " is " + route + ". Trains already passed " + routeCount);
                     }
+                } else {
+                    changeRoute();
+                    routeCount = 1;
                 }
+                System.out.println(train + " drives in the tunnel " + tunnelNumber);
+                System.out.println("Priority route in the tunnel " + tunnelNumber + " is " + route +
+                        ". Trains already passed: " + routeCount);
+            }
+            try {
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+//            }
         }
     }
 
     private void changeRoute() {
-        Route newRoute = Route.values()[new Random().nextInt(Route.values().length)];
+        Route newRoute = getRandomRoute();
         if (route == newRoute) {
             changeRoute();
         } else {
             route = newRoute;
         }
+    }
+
+    private Route getRandomRoute() {
+        return Route.values()[new Random().nextInt(Route.values().length)];
     }
 }

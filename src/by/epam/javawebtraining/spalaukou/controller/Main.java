@@ -27,24 +27,8 @@ public class Main {
         trainProducer.getThread().join();
         tunnel1.getThread().join();
         tunnel2.getThread().join();
+
         System.out.println("End main");
 
-
-        /*//        FirstThread firstThread = new FirstThread();
-//        firstThread.start();
-        FirstThread firstThread = new FirstThread();
-
-//        SecondThread secondThread = new SecondThread();
-//        Thread thread = new Thread(secondThread);
-//        thread.start();
-        SecondThread secondThread = new SecondThread();
-
-        firstThread.join();
-        secondThread.getThread().join();
-
-        for (int i = 0; i < 10; i++) {
-            System.out.println("Main thread");
-            Thread.sleep(new Random().nextInt(1000));
-        }*/
     }
 }
