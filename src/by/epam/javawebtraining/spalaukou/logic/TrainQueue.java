@@ -3,6 +3,7 @@ package by.epam.javawebtraining.spalaukou.logic;
 import by.epam.javawebtraining.spalaukou.model.entity.Route;
 import by.epam.javawebtraining.spalaukou.model.entity.Train;
 import by.epam.javawebtraining.spalaukou.model.entity.Type;
+import by.epam.javawebtraining.spalaukou.model.exception.EmptyQueueException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,11 @@ public class TrainQueue {
     public Train get(Route route, int tunnelNumber) {
         lock.lock();
         try {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                //log
+            }
             if (storage.size() > 0) {
 //            notifyAll();
                 for (Train train : storage) {
@@ -53,6 +59,11 @@ public class TrainQueue {
                 Train toReturn = storage.get(0);
                 storage.remove(0);
                 return toReturn;
+            }
+            try {
+                throw new EmptyQueueException();
+            } catch (EmptyQueueException e) {
+                //log
             }
             System.out.println("Tunnel " + tunnelNumber + " checks: No trains in the queue.");
             return null;

@@ -1,6 +1,7 @@
 package by.epam.javawebtraining.spalaukou.model.entity;
 
 import by.epam.javawebtraining.spalaukou.logic.TrainQueue;
+import by.epam.javawebtraining.spalaukou.model.exception.MaxInOneDirectionException;
 
 import java.util.Random;
 
@@ -35,13 +36,18 @@ public class Tunnel implements Runnable {
     public void run() {
         int maxInOneDirection = 3;
 
-        boolean flag = true;
-        while (flag) {
+        while (true) {
 //            if(trainQueue.getLock().tryLock()) {
+            System.out.println(thread.getName() + " checks: " + trainQueue.getLock());
             Train train = trainQueue.get(route, tunnelNumber);
             if (train != null) {
                 if (train.getRoute() == route) {
                     if (routeCount++ == maxInOneDirection) {
+                        try {
+                            throw new MaxInOneDirectionException();
+                        } catch (MaxInOneDirectionException e) {
+                            //log
+                        }
                         changeRoute();
                         routeCount = 0;
                     }
@@ -53,11 +59,11 @@ public class Tunnel implements Runnable {
                 System.out.println("Priority route in the tunnel " + tunnelNumber + " is " + route +
                         ". Trains already passed: " + routeCount);
             }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 //            }
         }
     }

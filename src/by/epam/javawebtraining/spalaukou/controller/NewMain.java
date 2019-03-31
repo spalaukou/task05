@@ -34,18 +34,19 @@ class Tunnel implements Runnable {
     public void run() {
         boolean flag = true;
         while (flag) {
-                String train = resource.getTrain();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (train != null) {
-                    System.out.println(thread.getName() + " - " + train);
+            System.out.println(thread.getName() + " checks: " + resource.getLock());
 
-                } else {
-                    flag = false;
-                }
+            String train = resource.getTrain();
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+            if (train != null) {
+                System.out.println(thread.getName() + " - " + train);
+            } else {
+                flag = false;
+            }
         }
     }
 }
@@ -69,12 +70,18 @@ class Resource {
     public String getTrain() {
         lock.lock();
         try {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                //log
+            }
             if (trains.size() > 0) {
                 String temp = trains.get(0);
                 trains.remove(0);
 
                 return temp;
             }
+            System.out.println("Tunnel checks trains...");
             return null;
         } finally {
             lock.unlock();
