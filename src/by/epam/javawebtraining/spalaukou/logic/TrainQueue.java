@@ -2,10 +2,9 @@ package by.epam.javawebtraining.spalaukou.logic;
 
 import by.epam.javawebtraining.spalaukou.model.entity.Route;
 import by.epam.javawebtraining.spalaukou.model.entity.Train;
-import by.epam.javawebtraining.spalaukou.model.entity.Type;
 import by.epam.javawebtraining.spalaukou.model.exception.EmptyQueueException;
+import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.Lock;
@@ -17,29 +16,36 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 
 public class TrainQueue {
+    private static final Logger logger = Logger.getRootLogger();
+
     private List<Train> storage;
-    private Lock lock = new ReentrantLock();
-    private Lock lockAdd = new ReentrantLock();
+    private Lock lock;
+    private Lock lockAdd;
 
     public TrainQueue() {
-        //storage = new ArrayList<>();
         storage = new CopyOnWriteArrayList<>();
+        lock = new ReentrantLock();
+        lockAdd = new ReentrantLock();
     }
 
     public Lock getLock() {
         return lock;
     }
 
-//    public synchronized void add(Train train) {
+    //    public synchronized void add(Train train) {
     public void add(Train train) {
 //        notifyAll();
         lockAdd.lock();
-        storage.add(train);
-        System.out.println("Train arrives and is added to the queue: " + train);
-        lockAdd.unlock();
+        try {
+            storage.add(train);
+            logger.trace("Train arrives and is added to the queue: " + train);
+//            System.out.println("Train arrives and is added to the queue: " + train);
+        } finally {
+            lockAdd.unlock();
+        }
     }
 
-//    public synchronized Train get(Route route, int tunnelNumber) {
+    //    public synchronized Train get(Route route, int tunnelNumber) {
     public Train get(Route route, int tunnelNumber) {
         lock.lock();
         try {
@@ -65,7 +71,8 @@ public class TrainQueue {
             } catch (EmptyQueueException e) {
                 //log
             }
-            System.out.println("Tunnel " + tunnelNumber + " checks: No trains in the queue.");
+            logger.trace("Tunnel " + tunnelNumber + " checks: No trains in the queue.");
+//            System.out.println("Tunnel " + tunnelNumber + " checks: No trains in the queue.");
             return null;
         } finally {
             lock.unlock();

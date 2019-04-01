@@ -7,6 +7,7 @@ package by.epam.javawebtraining.spalaukou.model.entity;
 
 public class Train {
     private static int trainCount = 0;
+
     private Type type;
     private Route route;
     private int number;
