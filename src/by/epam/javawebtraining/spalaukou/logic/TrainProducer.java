@@ -3,8 +3,10 @@ package by.epam.javawebtraining.spalaukou.logic;
 import by.epam.javawebtraining.spalaukou.model.entity.Route;
 import by.epam.javawebtraining.spalaukou.model.entity.Train;
 import by.epam.javawebtraining.spalaukou.model.entity.Type;
+import org.apache.log4j.Logger;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Stanislau Palaukou on 27.03.2019
@@ -12,12 +14,14 @@ import java.util.Random;
  */
 
 public class TrainProducer implements Runnable {
-    private TrainQueue trainQueue;
+    private static final Logger LOGGER = Logger.getRootLogger();
+
+    private TrainList trainList;
     private Thread thread;
     private int trainCount;
 
-    public TrainProducer(TrainQueue trainQueue, int trainCount) {
-        this.trainQueue = trainQueue;
+    public TrainProducer(TrainList trainList, int trainCount) {
+        this.trainList = trainList;
         this.trainCount = trainCount;
         thread = new Thread(this);
         thread.setName("-=Producer=-");
@@ -34,11 +38,11 @@ public class TrainProducer implements Runnable {
         while (count < trainCount) {
             Train randomTrain = new Train(getRandomType(), getRandomRoute());
             count++;
-            trainQueue.add(randomTrain);
+            trainList.add(randomTrain);
             try {
-                Thread.sleep(new Random().nextInt(500));
+                TimeUnit.SECONDS.sleep(new Random().nextInt(2));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
             }
         }
     }

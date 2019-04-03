@@ -1,6 +1,6 @@
 package by.epam.javawebtraining.spalaukou.controller;
 
-import by.epam.javawebtraining.spalaukou.logic.TrainQueue;
+import by.epam.javawebtraining.spalaukou.logic.TrainList;
 import by.epam.javawebtraining.spalaukou.model.entity.Route;
 import by.epam.javawebtraining.spalaukou.model.entity.Train;
 import by.epam.javawebtraining.spalaukou.model.entity.Tunnel;
@@ -19,7 +19,7 @@ import static org.testng.Assert.*;
  */
 
 public class MainTest {
-    TrainQueue trainQueue;
+    TrainList trainList;
     Tunnel tunnel1;
     Tunnel tunnel2;
     List<Train> expected1;
@@ -36,17 +36,17 @@ public class MainTest {
         train3 = new Train(Type.PASSENGER, Route.SALOU_BARCELONA);
         train4 = new Train(Type.SPEEDY, Route.SALOU_BARCELONA);
 
-        trainQueue = new TrainQueue();
-        trainQueue.add(train1);
-        trainQueue.add(train2);
-        trainQueue.add(train3);
-        trainQueue.add(train4);
+        trainList = new TrainList();
+        trainList.add(train1);
+        trainList.add(train2);
+        trainList.add(train3);
+        trainList.add(train4);
     }
 
     @Test
     public void testMain() throws InterruptedException {
-        tunnel1 = new Tunnel(trainQueue);
-        tunnel2 = new Tunnel(trainQueue);
+        tunnel1 = new Tunnel(trainList);
+        tunnel2 = new Tunnel(trainList);
 
         tunnel1.getThread().join();
         tunnel2.getThread().join();

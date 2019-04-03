@@ -1,7 +1,7 @@
 package by.epam.javawebtraining.spalaukou.controller;
 
 import by.epam.javawebtraining.spalaukou.logic.TrainProducer;
-import by.epam.javawebtraining.spalaukou.logic.TrainQueue;
+import by.epam.javawebtraining.spalaukou.logic.TrainList;
 import by.epam.javawebtraining.spalaukou.model.entity.Tunnel;
 import org.apache.log4j.Logger;
 
@@ -11,26 +11,21 @@ import org.apache.log4j.Logger;
  */
 
 public class Main {
-    private static final Logger logger = Logger.getRootLogger();
+    private static final Logger LOGGER = Logger.getRootLogger();
+    private static final int TRAINS_TO_PRODUCE = 10;
 
     public static void main(String[] args) throws InterruptedException {
-        logger.trace("Available number of cores: " + Runtime.getRuntime().availableProcessors());
-//        System.out.println("Available number of cores: " + Runtime.getRuntime().availableProcessors());
+        LOGGER.trace("Available number of cores: " + Runtime.getRuntime().availableProcessors());
 
-        TrainQueue trainQueue = new TrainQueue();
-        TrainProducer trainProducer = new TrainProducer(trainQueue, 10);
-        Tunnel tunnel1 = new Tunnel(trainQueue);
-        Tunnel tunnel2 = new Tunnel(trainQueue);
+        TrainList trainList = new TrainList();
+        TrainProducer trainProducer = new TrainProducer(trainList, TRAINS_TO_PRODUCE);
+        Tunnel tunnel1 = new Tunnel(trainList);
+        Tunnel tunnel2 = new Tunnel(trainList);
 
         trainProducer.getThread().join();
         tunnel1.getThread().join();
         tunnel2.getThread().join();
 
-        System.out.println(tunnel1.getTrains());
-        System.out.println(tunnel2.getTrains());
-
-        logger.trace("End main thread.");
-//        System.out.println("End main thread.");
-
+        LOGGER.trace("End main thread.");
     }
 }

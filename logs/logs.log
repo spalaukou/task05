@@ -1,46 +1,53 @@
-2019-04-01 16:18:18 TRACE root:17 - Available number of cores: 4
-2019-04-01 16:18:18 TRACE root:57 - -=Tunnel 2=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Unlocked]
-2019-04-01 16:18:18 TRACE root:57 - -=Tunnel 1=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Unlocked]
-2019-04-01 16:18:18 TRACE root:41 - Train arrives and is added to the queue: Train 1 PASSENGER BARCELONA_SALOU
-2019-04-01 16:18:18 TRACE root:41 - Train arrives and is added to the queue: Train 2 PASSENGER BARCELONA_SALOU
-2019-04-01 16:18:18 TRACE root:41 - Train arrives and is added to the queue: Train 3 SPEEDY SALOU_BARCELONA
-2019-04-01 16:18:18 TRACE root:41 - Train arrives and is added to the queue: Train 4 PASSENGER SALOU_BARCELONA
-2019-04-01 16:18:19 TRACE root:41 - Train arrives and is added to the queue: Train 5 SPEEDY SALOU_BARCELONA
-2019-04-01 16:18:19 TRACE root:41 - Train arrives and is added to the queue: Train 6 PASSENGER SALOU_BARCELONA
-2019-04-01 16:18:19 TRACE root:41 - Train arrives and is added to the queue: Train 7 PASSENGER SALOU_BARCELONA
-2019-04-01 16:18:19 TRACE root:97 - Train 1 PASSENGER BARCELONA_SALOU drives in the tunnel 2
-2019-04-01 16:18:19 TRACE root:98 - Priority route in the tunnel 2 is BARCELONA_SALOU. Trains already passed: 1
-2019-04-01 16:18:19 TRACE root:41 - Train arrives and is added to the queue: Train 8 PASSENGER BARCELONA_SALOU
-2019-04-01 16:18:19 TRACE root:41 - Train arrives and is added to the queue: Train 9 PASSENGER SALOU_BARCELONA
-2019-04-01 16:18:19 TRACE root:41 - Train arrives and is added to the queue: Train 10 SPEEDY BARCELONA_SALOU
-2019-04-01 16:18:20 TRACE root:97 - Train 3 SPEEDY SALOU_BARCELONA drives in the tunnel 1
-2019-04-01 16:18:20 TRACE root:98 - Priority route in the tunnel 1 is SALOU_BARCELONA. Trains already passed: 1
-2019-04-01 16:18:20 TRACE root:57 - -=Tunnel 2=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Unlocked]
-2019-04-01 16:18:21 TRACE root:57 - -=Tunnel 1=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Locked by thread -=Tunnel 2=-]
-2019-04-01 16:18:21 TRACE root:97 - Train 2 PASSENGER BARCELONA_SALOU drives in the tunnel 2
-2019-04-01 16:18:21 TRACE root:98 - Priority route in the tunnel 2 is BARCELONA_SALOU. Trains already passed: 2
-2019-04-01 16:18:22 TRACE root:97 - Train 4 PASSENGER SALOU_BARCELONA drives in the tunnel 1
-2019-04-01 16:18:22 TRACE root:98 - Priority route in the tunnel 1 is SALOU_BARCELONA. Trains already passed: 2
-2019-04-01 16:18:22 TRACE root:57 - -=Tunnel 2=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Unlocked]
-2019-04-01 16:18:23 TRACE root:57 - -=Tunnel 1=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Locked by thread -=Tunnel 2=-]
-2019-04-01 16:18:23 TRACE root:97 - Train 8 PASSENGER BARCELONA_SALOU drives in the tunnel 2
-2019-04-01 16:18:23 TRACE root:98 - Priority route in the tunnel 2 is BARCELONA_SALOU. Trains already passed: 3
-2019-04-01 16:18:24 TRACE root:57 - -=Tunnel 2=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Locked by thread -=Tunnel 1=-]
-2019-04-01 16:18:24 TRACE root:97 - Train 5 SPEEDY SALOU_BARCELONA drives in the tunnel 1
-2019-04-01 16:18:24 TRACE root:98 - Priority route in the tunnel 1 is SALOU_BARCELONA. Trains already passed: 3
-2019-04-01 16:18:25 TRACE root:97 - Train 10 SPEEDY BARCELONA_SALOU drives in the tunnel 2
-2019-04-01 16:18:25 TRACE root:57 - -=Tunnel 1=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Unlocked]
-2019-04-01 16:18:25 TRACE root:98 - Priority route in the tunnel 2 is SALOU_BARCELONA. Trains already passed: 1
-2019-04-01 16:18:26 TRACE root:97 - Train 6 PASSENGER SALOU_BARCELONA drives in the tunnel 1
-2019-04-01 16:18:26 TRACE root:98 - Priority route in the tunnel 1 is BARCELONA_SALOU. Trains already passed: 1
-2019-04-01 16:18:26 TRACE root:57 - -=Tunnel 2=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Unlocked]
-2019-04-01 16:18:27 TRACE root:57 - -=Tunnel 1=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Locked by thread -=Tunnel 2=-]
-2019-04-01 16:18:27 TRACE root:97 - Train 7 PASSENGER SALOU_BARCELONA drives in the tunnel 2
-2019-04-01 16:18:27 TRACE root:98 - Priority route in the tunnel 2 is SALOU_BARCELONA. Trains already passed: 2
-2019-04-01 16:18:28 TRACE root:57 - -=Tunnel 2=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Locked by thread -=Tunnel 1=-]
-2019-04-01 16:18:28 TRACE root:97 - Train 9 PASSENGER SALOU_BARCELONA drives in the tunnel 1
-2019-04-01 16:18:28 TRACE root:98 - Priority route in the tunnel 1 is SALOU_BARCELONA. Trains already passed: 1
-2019-04-01 16:18:29 TRACE root:57 - -=Tunnel 1=- checks: java.util.concurrent.locks.ReentrantLock@4cec181c[Locked by thread -=Tunnel 2=-]
-2019-04-01 16:18:29 TRACE root:74 - Tunnel 2 checks: No trains in the queue.
-2019-04-01 16:18:30 TRACE root:74 - Tunnel 1 checks: No trains in the queue.
-2019-04-01 16:18:31 TRACE root:32 - End main thread.
+2019-04-03 10:59:53 TRACE root:18 - Available number of cores: 4
+2019-04-03 10:59:53 TRACE root:28 - Train arrives and is added to the queue: Train 1 SPEEDY SALOU_BARCELONA
+2019-04-03 10:59:53 TRACE root:28 - Train arrives and is added to the queue: Train 2 SPEEDY SALOU_BARCELONA
+2019-04-03 10:59:54 TRACE root:96 - Train 1 SPEEDY SALOU_BARCELONA drives in the tunnel 1
+2019-04-03 10:59:54 TRACE root:96 - Train 1 SPEEDY SALOU_BARCELONA drives in the tunnel 2
+2019-04-03 10:59:54 TRACE root:97 - Priority route in the tunnel 2 is SALOU_BARCELONA. Trains already passed: 1
+2019-04-03 10:59:55 TRACE root:28 - Train arrives and is added to the queue: Train 3 CARGO SALOU_BARCELONA
+2019-04-03 10:59:55 TRACE root:28 - Train arrives and is added to the queue: Train 4 CARGO SALOU_BARCELONA
+2019-04-03 10:59:55 TRACE root:97 - Priority route in the tunnel 1 is SALOU_BARCELONA. Trains already passed: 1
+2019-04-03 10:59:55 TRACE root:99 - Right now in the tunnel 2: [Train 1 SPEEDY SALOU_BARCELONA]
+2019-04-03 10:59:55 TRACE root:99 - Right now in the tunnel 1: [Train 1 SPEEDY SALOU_BARCELONA]
+2019-04-03 10:59:56 TRACE root:28 - Train arrives and is added to the queue: Train 5 SPEEDY BARCELONA_SALOU
+2019-04-03 10:59:56 TRACE root:28 - Train arrives and is added to the queue: Train 6 SPEEDY SALOU_BARCELONA
+2019-04-03 10:59:57 TRACE root:28 - Train arrives and is added to the queue: Train 7 SPEEDY BARCELONA_SALOU
+2019-04-03 10:59:57 TRACE root:96 - Train 3 CARGO SALOU_BARCELONA drives in the tunnel 2
+2019-04-03 10:59:57 TRACE root:97 - Priority route in the tunnel 2 is SALOU_BARCELONA. Trains already passed: 2
+2019-04-03 10:59:57 TRACE root:99 - Right now in the tunnel 2: [Train 1 SPEEDY SALOU_BARCELONA, Train 3 CARGO SALOU_BARCELONA]
+2019-04-03 10:59:57 TRACE root:96 - Train 4 CARGO SALOU_BARCELONA drives in the tunnel 1
+2019-04-03 10:59:57 TRACE root:97 - Priority route in the tunnel 1 is SALOU_BARCELONA. Trains already passed: 2
+2019-04-03 10:59:57 TRACE root:99 - Right now in the tunnel 1: [Train 1 SPEEDY SALOU_BARCELONA, Train 4 CARGO SALOU_BARCELONA]
+2019-04-03 10:59:58 TRACE root:28 - Train arrives and is added to the queue: Train 8 SPEEDY BARCELONA_SALOU
+2019-04-03 10:59:59 TRACE root:28 - Train arrives and is added to the queue: Train 9 SPEEDY BARCELONA_SALOU
+2019-04-03 10:59:59 TRACE root:96 - Train 5 SPEEDY BARCELONA_SALOU drives in the tunnel 2
+2019-04-03 10:59:59 TRACE root:97 - Priority route in the tunnel 2 is BARCELONA_SALOU. Trains already passed: 1
+2019-04-03 10:59:59 TRACE root:99 - Right now in the tunnel 2: [Train 5 SPEEDY BARCELONA_SALOU]
+2019-04-03 10:59:59 TRACE root:96 - Train 6 SPEEDY SALOU_BARCELONA drives in the tunnel 1
+2019-04-03 10:59:59 TRACE root:97 - Priority route in the tunnel 1 is SALOU_BARCELONA. Trains already passed: 3
+2019-04-03 10:59:59 TRACE root:99 - Right now in the tunnel 1: [Train 4 CARGO SALOU_BARCELONA, Train 6 SPEEDY SALOU_BARCELONA]
+2019-04-03 11:00:00 TRACE root:28 - Train arrives and is added to the queue: Train 10 PASSENGER SALOU_BARCELONA
+2019-04-03 11:00:01 TRACE root:96 - Train 7 SPEEDY BARCELONA_SALOU drives in the tunnel 1
+2019-04-03 11:00:01 TRACE root:96 - Train 7 SPEEDY BARCELONA_SALOU drives in the tunnel 2
+2019-04-03 11:00:01 TRACE root:97 - Priority route in the tunnel 1 is BARCELONA_SALOU. Trains already passed: 1
+2019-04-03 11:00:01 TRACE root:97 - Priority route in the tunnel 2 is BARCELONA_SALOU. Trains already passed: 2
+2019-04-03 11:00:01 TRACE root:99 - Right now in the tunnel 1: [Train 7 SPEEDY BARCELONA_SALOU]
+2019-04-03 11:00:01 TRACE root:99 - Right now in the tunnel 2: [Train 5 SPEEDY BARCELONA_SALOU, Train 7 SPEEDY BARCELONA_SALOU]
+2019-04-03 11:00:03 TRACE root:96 - Train 8 SPEEDY BARCELONA_SALOU drives in the tunnel 1
+2019-04-03 11:00:03 TRACE root:96 - Train 8 SPEEDY BARCELONA_SALOU drives in the tunnel 2
+2019-04-03 11:00:03 TRACE root:97 - Priority route in the tunnel 2 is BARCELONA_SALOU. Trains already passed: 3
+2019-04-03 11:00:03 TRACE root:99 - Right now in the tunnel 2: [Train 7 SPEEDY BARCELONA_SALOU, Train 8 SPEEDY BARCELONA_SALOU]
+2019-04-03 11:00:03 TRACE root:97 - Priority route in the tunnel 1 is BARCELONA_SALOU. Trains already passed: 2
+2019-04-03 11:00:03 TRACE root:99 - Right now in the tunnel 1: [Train 7 SPEEDY BARCELONA_SALOU, Train 8 SPEEDY BARCELONA_SALOU]
+2019-04-03 11:00:05 ERROR root:69 - by.epam.javawebtraining.spalaukou.model.exception.MaxInOneDirectionException
+2019-04-03 11:00:05 TRACE root:96 - Train 9 SPEEDY BARCELONA_SALOU drives in the tunnel 2
+2019-04-03 11:00:05 TRACE root:97 - Priority route in the tunnel 2 is SALOU_BARCELONA. Trains already passed: 1
+2019-04-03 11:00:05 TRACE root:99 - Right now in the tunnel 2: [Train 8 SPEEDY BARCELONA_SALOU, Train 9 SPEEDY BARCELONA_SALOU]
+2019-04-03 11:00:05 TRACE root:96 - Train 10 PASSENGER SALOU_BARCELONA drives in the tunnel 1
+2019-04-03 11:00:05 TRACE root:97 - Priority route in the tunnel 1 is SALOU_BARCELONA. Trains already passed: 1
+2019-04-03 11:00:05 TRACE root:99 - Right now in the tunnel 1: [Train 10 PASSENGER SALOU_BARCELONA]
+2019-04-03 11:00:07 ERROR root:52 - by.epam.javawebtraining.spalaukou.model.exception.EmptyQueueException
+2019-04-03 11:00:07 TRACE root:54 - Tunnel 2 checks: No trains in the queue.
+2019-04-03 11:00:07 ERROR root:52 - by.epam.javawebtraining.spalaukou.model.exception.EmptyQueueException
+2019-04-03 11:00:07 TRACE root:54 - Tunnel 1 checks: No trains in the queue.
+2019-04-03 11:00:08 TRACE root:29 - End main thread.

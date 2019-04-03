@@ -11,9 +11,17 @@
         </layout>
     </appender>
 
+    <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %m%n"/>
+        </layout>
+    </appender>
+
     <root>
-        <priority value ="ERROR" />
+        <priority value ="TRACE" />
         <appender-ref ref="FileAppender" />
+        <appender-ref ref="ConsoleAppender" />
     </root>
 
 </log4j:configuration>
